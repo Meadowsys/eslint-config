@@ -22,6 +22,9 @@ module.exports = {
       node: true,
       es2021: true
    },
+   plugins: [
+      "@typescript-eslint/eslint-plugin"
+   ],
    rules: {
       // disable base eslint rules in favour of typescript-eslint rules
       "brace-style": off,

@@ -1,6 +1,6 @@
 {
    "name": "@autumnblaze/eslint-config-h",
-   "version": "0.1.0",
+   "version": "0.1.1",
    "description": "the eslint config i use, very likely tweaked very often",
    "main": "index.js",
    "files": [
