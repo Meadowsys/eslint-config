@@ -1,0 +1,37 @@
+{
+   "name": "@autumnblaze/eslint-config-h",
+   "version": "0.1.0",
+   "description": "the eslint config i use, very likely tweaked very often",
+   "main": "index.js",
+   "files": [
+      "index.js",
+      ".eslintrc.js"
+   ],
+   "scripts": {
+      "test": "echo none lol"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/PCelestia/eslint-config.git"
+   },
+   "keywords": [
+      "eslint",
+      "eslintconfig"
+   ],
+   "author": "PCelestia",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/PCelestia/eslint-config/issues"
+   },
+   "homepage": "https://github.com/PCelestia/eslint-config#readme",
+   "peerDependencies": {
+      "@typescript-eslint/eslint-plugin": "4",
+      "@typescript-eslint/parser": "4",
+      "eslint": "7"
+   },
+   "devDependencies": {
+      "@typescript-eslint/eslint-plugin": "^4.9.0",
+      "@typescript-eslint/parser": "^4.9.0",
+      "eslint": "^7.14.0"
+   }
+}
