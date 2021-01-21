@@ -1,14 +1,14 @@
 {
    "name": "@autumnblaze/eslint-config-h",
-   "version": "0.1.1",
+   "version": "1.0.0",
    "description": "the eslint config i use, very likely tweaked very often",
-   "main": "index.js",
+   "main": "smolrc.js",
    "files": [
-      "index.js",
-      ".eslintrc.js"
+      "smolrc.js"
    ],
    "scripts": {
-      "test": "echo none lol"
+      "squeeze": "rm smolrc.js && terser --config-file terser.json -o smolrc.js .eslintrc.js",
+      "prepublishOnly": "npm run squeeze"
    },
    "repository": {
       "type": "git",
@@ -18,7 +18,7 @@
       "eslint",
       "eslintconfig"
    ],
-   "author": "PCelestia",
+   "author": "Alexander Liu (autumnblazey)",
    "license": "MIT",
    "bugs": {
       "url": "https://github.com/PCelestia/eslint-config/issues"
@@ -27,11 +27,14 @@
    "peerDependencies": {
       "@typescript-eslint/eslint-plugin": "4",
       "@typescript-eslint/parser": "4",
-      "eslint": "7"
+      "eslint": "7",
+      "eslint-plugin-functional": "3"
    },
    "devDependencies": {
       "@typescript-eslint/eslint-plugin": "^4.9.0",
       "@typescript-eslint/parser": "^4.9.0",
-      "eslint": "^7.14.0"
+      "eslint": "^7.14.0",
+      "eslint-plugin-functional": "^3.2.1",
+      "terser": "^5.5.1"
    }
 }

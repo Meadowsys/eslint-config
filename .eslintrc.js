@@ -1,3 +1,4 @@
+"use strict";
 // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/docs/rules
 // https://eslint.org/docs/rules/
 
@@ -11,9 +12,9 @@ const never = "never";
 const all = "all";
 
 // yes im bad at regex lol
-const noodle = "^_?[a-z0-9]{1,}$";
-const noodleorupper = "^_?([0-9a-z]{1,}|[0-9A-Z]{1,})$";
-const T = "^[A-Z]$";
+// const noodle = "^_?[a-z0-9]{1,}$";
+// const noodleorupper = "^_?([0-9a-z]{1,}|[0-9A-Z]{1,})$";
+// const T = "^[A-Z]$";
 const ignoreunused = "^_";
 
 module.exports = {
@@ -23,7 +24,8 @@ module.exports = {
       es2021: true
    },
    plugins: [
-      "@typescript-eslint/eslint-plugin"
+      "@typescript-eslint",
+      "functional"
    ],
    rules: {
       // disable base eslint rules in favour of typescript-eslint rules
@@ -130,7 +132,7 @@ module.exports = {
          assertionStyle: "as",
          objectLiteralTypeAssertions: "never"
       }],
-      "@typescript-eslint/consistent-type-definitions": [error, "interface"],
+      "@typescript-eslint/consistent-type-definitions": [error, "type"],
       "@typescript-eslint/consistent-type-imports": [error, {
          prefer: "no-type-imports",
          disallowTypeAnnotations: true
@@ -141,22 +143,11 @@ module.exports = {
          // allowPattern: "h",
          allowPrivateClassPropertyAccess: false
       }],
-      "@typescript-eslint/explicit-function-return-type": [error, {
-         allowExpressions: false,
-         allowTypedFunctionExpressions: true,
-         allowHigherOrderFunctions: true,
-         allowConciseArrowFunctionExpressionsStartingWithVoid: false
-      }],
+      "@typescript-eslint/explicit-function-return-type": off,
       "@typescript-eslint/explicit-member-accessibility": [error, {
          accessibility: "explicit"
       }],
-      "@typescript-eslint/explicit-module-boundary-types": [error, {
-         allowArgumentsExplicitlyTypedAsAny: true,
-         allowDirectConstAssertionInArrowFunctions: false,
-         // allowedNames: [],
-         allowHigherOrderFunctions: false,
-         allowTypedFunctionExpressions: false
-      }],
+      "@typescript-eslint/explicit-module-boundary-types": off,
       "@typescript-eslint/func-call-spacing": [error, never],
       // indent: might want to read this issue https://github.com/typescript-eslint/typescript-eslint/issues/1824
       "@typescript-eslint/indent": [error, 3, {
@@ -184,7 +175,7 @@ module.exports = {
          // ignoredNodes: [],
          ignoreComments: false
       }],
-      "@typescript-eslint/init-declarations": ["error", always],
+      "@typescript-eslint/init-declarations": off,
       "@typescript-eslint/keyword-spacing": ["error", {
          before: true,
          after: true
@@ -202,127 +193,7 @@ module.exports = {
       }],
       "@typescript-eslint/member-ordering": off,
       "@typescript-eslint/method-signature-style": [error, "method"],
-      "@typescript-eslint/naming-convention": [error, {
-         // for vars and lets
-         // noodle
-         format: null,
-         custom: {
-            regex: noodle,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["variable"]
-      }, {
-         // const
-         // noodle or upper
-         format: null,
-         custom: {
-            regex: noodleorupper,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["variable"],
-         modifiers: ["const"]
-      }, {
-         // function
-         // noodle
-         format: null,
-         custom: {
-            regex: noodle,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["function"]
-      }, {
-         // parameters
-         // noodle
-         format: null,
-         custom: {
-            regex: noodle,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["parameter"]
-      }, {
-         // properties
-         // noodle
-         format: null,
-         custom: {
-            regex: noodle,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["property"]
-      }, {
-         // readonly properties
-         // noodle
-         format: null,
-         custom: {
-            regex: noodleorupper,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["property"],
-         modifiers: ["readonly"]
-      }
-      // parameter properties go here but idk what that is
-      , {
-         // method
-         // noodle
-         format: null,
-         custom: {
-            regex: noodle,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["method"]
-      }, {
-         // accessor
-         // noodle
-         format: null,
-         custom: {
-            regex: noodle,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["accessor"]
-      }, {
-         // readonly accessor
-         // noodle
-         format: null,
-         custom: {
-            regex: noodle,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["accessor"],
-         modifiers: ["readonly"]
-      }, {
-         // enummember
-         // noodle
-         format: null,
-         custom: {
-            regex: noodleorupper,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["enumMember"]
-      }, {
-         // class, interface, typealias, enum
-         // noodle
-         format: ["PascalCase"],
-         trailingUnderscore: "forbid",
-         selector: ["class", "interface", "typeAlias", "enum"]
-      }, {
-         // typeparameter
-         format: null,
-         custom: {
-            regex: T,
-            match: true
-         },
-         trailingUnderscore: "forbid",
-         selector: ["typeParameter"]
-      }],
+      "@typescript-eslint/naming-convention": off,
       "@typescript-eslint/no-array-constructor": error,
       "@typescript-eslint/no-base-to-string": warn,
       "@typescript-eslint/no-confusing-non-null-assertion": error,
@@ -348,44 +219,29 @@ module.exports = {
       }],
       "@typescript-eslint/no-loop-func": error,
       "@typescript-eslint/no-loss-of-precision": error,
-      "@typescript-eslint/no-magic-numbers": [warn, {
-         ignore: [-1, 0, 1],
-         ignoreArrayIndexes: true,
-         ignoreDefaultValues: true,
-         enforceConst: false,
-         detectObjects: false,
-         ignoreEnums: true,
-         ignoreNumericLiteralTypes: true,
-         ignoreReadonlyClassProperties: true
-      }],
+      "@typescript-eslint/no-magic-numbers": off,
       "@typescript-eslint/no-misused-new": error,
       "@typescript-eslint/no-misused-promises": off,
       "@typescript-eslint/no-namespace": error,
       "@typescript-eslint/no-non-null-asserted-optional-chain": error,
       "@typescript-eslint/no-non-null-assertion": error,
       "@typescript-eslint/no-parameter-properties": error,
-      "@typescript-eslint/no-redeclare": [error, {
-         ignoreDeclarationMerge: false
-      }],
+      "@typescript-eslint/no-redeclare": off,
       "@typescript-eslint/no-require-imports": error,
       "@typescript-eslint/no-shadow": warn,
       "@typescript-eslint/no-this-alias": error,
       "@typescript-eslint/no-throw-literal": error,
-      "@typescript-eslint/no-type-alias": [error, {
-         allowAliases: "in-unions-and-intersections"
-      }],
+      "@typescript-eslint/no-type-alias": off,
       "@typescript-eslint/no-unnecessary-boolean-literal-compare": error,
-      "@typescript-eslint/no-unnecessary-condition": [error, {
-         allowConstantLoopConditions: true
-      }],
+      "@typescript-eslint/no-unnecessary-condition": off,
       "@typescript-eslint/no-unnecessary-qualifier": error,
       "@typescript-eslint/no-unnecessary-type-arguments": off,
       "@typescript-eslint/no-unnecessary-type-assertion": error,
-      "@typescript-eslint/no-unsafe-assignment": error,
+      "@typescript-eslint/no-unsafe-assignment": off,
       "@typescript-eslint/no-unsafe-call": error,
-      "@typescript-eslint/no-unsafe-member-access": error,
-      "@typescript-eslint/no-unsafe-return": error,
-      "@typescript-eslint/no-unused-expressions": error,
+      "@typescript-eslint/no-unsafe-member-access": off,
+      "@typescript-eslint/no-unsafe-return": off,
+      "@typescript-eslint/no-unused-expressions": off,
       "@typescript-eslint/no-unused-vars-experimental": [warn, {
          ignoreArgsIfArgsAfterAreUsed: true,
          ignoredNamesRegex: ignoreunused
@@ -416,20 +272,22 @@ module.exports = {
       "@typescript-eslint/prefer-regexp-exec": error,
       "@typescript-eslint/prefer-string-starts-ends-with": error,
       "@typescript-eslint/prefer-ts-expect-error": error,
-      "@typescript-eslint/promise-function-async": error,
+      "@typescript-eslint/promise-function-async": off,
       "@typescript-eslint/quotes": [error, "double", {
          avoidEscape: false,
          allowTemplateLiterals: false
       }],
-      "@typescript-eslint/require-array-sort-compare": warn,
+      "@typescript-eslint/require-array-sort-compare": off,
       "@typescript-eslint/require-await": off,
-      "@typescript-eslint/restrict-plus-operands": [warn, {
-         checkCompoundAssignments: true
-      }],
+      "@typescript-eslint/restrict-plus-operands": off,
       "@typescript-eslint/restrict-template-expressions": off,
       "@typescript-eslint/return-await": off,
       "@typescript-eslint/semi": error,
-      "@typescript-eslint/space-before-function-paren": [error, never],
+      "@typescript-eslint/space-before-function-paren": ["error", {
+         anonymous: "never",
+         named: "never",
+         asyncArrow: "always"
+      }],
       "@typescript-eslint/strict-boolean-expressions": off,
       "@typescript-eslint/switch-exhaustiveness-check": error,
       "@typescript-eslint/triple-slash-reference": [error, {
@@ -460,6 +318,10 @@ module.exports = {
       "@typescript-eslint/unbound-method": [error, {
          ignoreStatic: false
       }],
-      "@typescript-eslint/unified-signatures": error
+      "@typescript-eslint/unified-signatures": error,
+
+      // functional rules
+      "functional/no-class": "error",
+      "functional/prefer-type-literal": "error"
    }
 };
